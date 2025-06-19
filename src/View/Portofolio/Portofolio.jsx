@@ -3,7 +3,7 @@ import React from 'react';
 // Icon
 import github from '../../assets/icon/github.png';
 import linkedin from '../../assets/icon/linkedin.svg';
-import instagram from '../../assets/icon/instagram.png';
+import igicon from '../../assets/icon/igicon.png';
 import gmail from '../../assets/icon/gmail.png';
 import discord from '../../assets/icon/discord.png';
 import whatsapp from '../../assets/icon/whatsapp.png';
@@ -773,7 +773,7 @@ const Portofolio = () => {
                     rel="noopener noreferrer"
                     className="flex items-center gap-3 lg:justify-end text-[#6B7280] hover:text-[#E4405F] transition-colors duration-200"
                   >
-                    <img src={instagram} alt="Instagram" className="w-8 h-8 flex-shrink-0" />
+                    <img src={igicon} alt="Ig" className="w-8 h-8 flex-shrink-0" />
                     <span className="font-poppins text-[18px]">@rayyanzgg</span>
                   </a>
 
