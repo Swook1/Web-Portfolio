@@ -32,6 +32,7 @@ import TPM1 from '../../assets/certificate/Certificate of Completion Rayyan Zafi
 import TPM2 from '../../assets/certificate/Certificate of Participation Rayyan Zafier Leksono.jpg';
 import BNMC from '../../assets/certificate/PRE STARTER 学生.png';
 
+
 // Project Videos
 import AsphatVideo from '../../assets/projects/Asphatl.mp4';
 import BConnectVideo from '../../assets/projects/B-Connect Trailer.mp4';
