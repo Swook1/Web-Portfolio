@@ -1,45 +1,45 @@
 import React from 'react';
 
 // Icon
-import github from '../../assets/icon/github.png';
-import linkedin from '../../assets/icon/linkedin.svg';
-import igicon from '../../assets/icon/igicon.png';
-import gmail from '../../assets/icon/gmail.png';
-import discord from '../../assets/icon/discord.png';
-import whatsapp from '../../assets/icon/whatsapp.png';
-import browser from '../../assets/icon/browser.png';
+import github from '../assets/icon/github.png';
+import linkedin from '../assets/icon/linkedin.svg';
+import igicon from '../assets/icon/igicon.png';
+import gmail from '../assets/icon/gmail.png';
+import discord from '../assets/icon/discord.png';
+import whatsapp from '../assets/icon/whatsapp.png';
+import browser from '../assets/icon/browser.png';
 
-import person from '../../assets/picture/RayyanGanteng1.png';
-import RayyanGanteng2 from '../../assets/picture/RayyanGanteng2.jpg';
+import person from '../assets/picture/RayyanGanteng1.png';
+import RayyanGanteng2 from '../assets/picture/RayyanGanteng2.jpg';
 
 // Skills icon
-import AdobePremiere from '../../assets/skills/AdobePremiere.png';
-import C from '../../assets/skills/C.png';
-import Cs from '../../assets/skills/Cs.png';
-import CSS from '../../assets/skills/CSS.png';
-import Figma from '../../assets/skills/Figma.png';
-import HTML from '../../assets/skills/HTML.png';
-import Java from '../../assets/skills/Java.png';
-import JavaScript from '../../assets/skills/Javascript.png';
-import MySQL from '../../assets/skills/MySQL.png';
-import MongoDB from '../../assets/skills/Mongodb.png';
-import ReactLogo from '../../assets/skills/React.png';
-import TailwindLogo from '../../assets/skills/TailwindCSS.png';
+import AdobePremiere from '../assets/skills/AdobePremiere.png';
+import C from '../assets/skills/C.png';
+import Cs from '../assets/skills/Cs.png';
+import CSS from '../assets/skills/CSS.png';
+import Figma from '../assets/skills/Figma.png';
+import HTML from '../assets/skills/HTML.png';
+import Java from '../assets/skills/Java.png';
+import JavaScript from '../assets/skills/Javascript.png';
+import MySQL from '../assets/skills/MySQL.png';
+import MongoDB from '../assets/skills/Mongodb.png';
+import ReactLogo from '../assets/skills/React.png';
+import TailwindLogo from '../assets/skills/TailwindCSS.png';
 
 // Certificate
-import BNCC from '../../assets/certificate/BNCC_Activist.jpg';
-import TPM1 from '../../assets/certificate/Certificate of Completion Rayyan Zafier Leksono.jpg';
-import TPM2 from '../../assets/certificate/Certificate of Participation Rayyan Zafier Leksono.jpg';
-import BNMC from '../../assets/certificate/PRE STARTER 学生.png';
+import BNCC from '../assets/certificate/BNCC_Activist.jpg';
+import TPM1 from '../assets/certificate/Certificate of Completion Rayyan Zafier Leksono.jpg';
+import TPM2 from '../assets/certificate/Certificate of Participation Rayyan Zafier Leksono.jpg';
+import BNMC from '../assets/certificate/PRE STARTER 学生.png';
 
 
 // Project Videos
-import AsphatVideo from '../../assets/projects/Asphatl.mp4';
-import BConnectVideo from '../../assets/projects/B-Connect Trailer.mp4';
-import LibraryVideo from '../../assets/projects/Library Management.mp4';
-import MenuVideo from '../../assets/projects/Menu Management.mp4';
+import AsphatVideo from '../assets/projects/Asphatl.mp4';
+import BConnectVideo from '../assets/projects/B-Connect Trailer.mp4';
+import LibraryVideo from '../assets/projects/Library Management.mp4';
+import MenuVideo from '../assets/projects/Menu Management.mp4';
 
-const Portofolio = () => {
+const Portfolio = () => {
   // Animation states
   const [isPageLoaded, setIsPageLoaded] = React.useState(false);
   const [visibleSections, setVisibleSections] = React.useState(new Set());
@@ -258,7 +258,7 @@ const Portofolio = () => {
     e.preventDefault();
     const targetElement = document.getElementById(targetId);
     if (targetElement) {
-      const offsetTop = targetElement.offsetTop - 80; 
+      const offsetTop = targetId === 'home' ? 0 : targetElement.offsetTop;
       window.scrollTo({
         top: offsetTop,
         behavior: 'smooth'
@@ -376,7 +376,8 @@ const Portofolio = () => {
           </div>
         </div>
       </section>      
-        {/* About Section */}
+        
+      {/* About Section */}
       <section id="about" className={`min-h-screen flex items-center justify-center bg-[#E5E7EB] transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex flex-col lg:flex-row items-center gap-12">
@@ -410,13 +411,14 @@ const Portofolio = () => {
           </div>
         </div>
       </section>
-        {/* Skills Section */}
+      {/* Skills Section */}
       <section id="skills" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] py-20 transition-all duration-1000 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className={`text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4 transition-all duration-1000 delay-200 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>Skills</h2>
           <p className={`text-lg text-[#6B7280] font-poppins mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-400 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             Programming languages and softwares I work with
-          </p>          {/* Skills Grid - Centered */}
+          </p>          
+          {/* Skills Grid - Centered */}
           <div className="flex justify-center">
             <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 lg:gap-16 xl:gap-20 max-w-7xl">
               {skills.map((skill, index) => (
@@ -449,7 +451,7 @@ const Portofolio = () => {
       <section id="projects" className={`min-h-screen bg-[#E5E7EB] py-20 transition-all duration-1000 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mb-16 transition-all duration-1000 delay-200 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+          <div className={`text-center mt-8 mb-16 transition-all duration-1000 delay-200 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             <h2 className="text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4">My Projects</h2>
             <p className="text-lg text-[#6B7280] font-poppins max-w-2xl mx-auto">
               Showcase of my development projects and technical achievements
@@ -537,7 +539,7 @@ const Portofolio = () => {
                       </p>
                     </div>
 
-                    {/* Technologies Used */}
+                    {/* Language Used */}
                     <div>
                       <h4 className="text-lg font-semibold text-[#374151] font-poppins mb-3">Language Used:</h4>
                       <div className="flex flex-wrap gap-4">
@@ -809,4 +811,4 @@ const Portofolio = () => {
   );
 }
 
-export default Portofolio;
+export default Portfolio;
