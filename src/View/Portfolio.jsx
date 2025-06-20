@@ -43,6 +43,7 @@ const Portfolio = () => {
   // Animation states
   const [isPageLoaded, setIsPageLoaded] = React.useState(false);
   const [visibleSections, setVisibleSections] = React.useState(new Set());
+  const [isMobileMenuOpen, setIsMobileMenuOpen] = React.useState(false);
 
   // Skills data array
   const skills = [
@@ -103,7 +104,7 @@ const Portfolio = () => {
       description: 'As an individual final project for the Human Centered Design (HCI) course, Apshatl 9: Rejends was created as a remake of the Asphalt 9: Legends game website.',
       video: AsphatVideo,
       technologies: [HTML, CSS, JavaScript],
-      githubUrl: 'https://github.com/Swook1/asphatl-project',
+      githubUrl: 'https://github.com/Swook1/Asphatl-9-Rejends',
       websiteUrl: 'https://swook1.github.io/Asphatl-9-Rejends/'
     },
     {
@@ -112,7 +113,7 @@ const Portfolio = () => {
       description: 'Library Management System is a simple system for adding, displaying lists, searching, and deleting books. This Library Management System was created as one of the basic menu project exercises in Java.',
       video: LibraryVideo,
       technologies: [Java],
-      githubUrl: 'https://github.com/Swook1/library-management',
+      githubUrl: 'https://github.com/Swook1/Simple_Library-Management',
     },
     {
       id: 4,
@@ -120,21 +121,27 @@ const Portfolio = () => {
       description: 'The Menu Management System was created as the final project of BNCC Learning and Training. This system functions as a customization menu and inventory management with a user interface (UI) and database operations.',
       video: MenuVideo,
       technologies: [Java, MySQL],
-      githubUrl: 'https://github.com/Swook1/menu-management',
-    }
-  ];
+      githubUrl: 'https://github.com/Swook1/Menu-Management_JavaFX',
+    }  ];
   
   // Certificate carousel constants
   const CAROUSEL_CONFIG = {
     AUTO_ROTATE_INTERVAL: 8000, 
     ANIMATION_DURATION: 1000, 
-    CENTER_SIZE: { width: 'w-[600px]', height: 'h-[420px]' },
-    SIDE_SIZE: { width: 'w-[480px]', height: 'h-[340px]' },
+    CENTER_SIZE: { 
+      width: 'w-[280px] sm:w-[400px] lg:w-[600px]', 
+      height: 'h-[200px] sm:h-[280px] lg:h-[420px]' 
+    },
+    SIDE_SIZE: { 
+      width: 'w-[240px] sm:w-[320px] lg:w-[480px]', 
+      height: 'h-[170px] sm:h-[230px] lg:h-[340px]' 
+    },
     SCALE: {
       CENTER: 'scale-100',
       SIDE: 'scale-85'
     }
-  };  const [currentCertIndex, setCurrentCertIndex] = React.useState(0);
+  };
+  const [currentCertIndex, setCurrentCertIndex] = React.useState(0);
   const [selectedCertificate, setSelectedCertificate] = React.useState(null);
   const [imageOrientations, setImageOrientations] = React.useState({});
   const [videoStates, setVideoStates] = React.useState({});
@@ -274,75 +281,126 @@ const Portfolio = () => {
     setVideoStates(initialStates);
   }, []);  return (
     <div className={`transition-opacity duration-1000 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>        
-    {/* Navbar */}
-      <nav className="w-full bg-white px-6 py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
+      {/* Navbar */}
+      <nav className="w-full bg-white px-4 sm:px-6 py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
         <div className="flex justify-between items-center">
           <button 
             onClick={(e) => handleNavClick(e, 'home')}
-            className="font-poppins font-semibold text-gray-700 text-[18px] hover:text-gray-600 transition-all duration-200 cursor-pointer"
+            className="font-poppins font-semibold text-gray-700 text-[16px] sm:text-[18px] hover:text-gray-600 transition-all duration-200 cursor-pointer"
           >
             Rayyan
           </button>
           
-          <div className="flex items-center gap-8 font-poppins font-medium text-gray-700 text-[18px]">
+          {/* Desktop Menu */}
+          <div className="hidden md:flex items-center gap-6 lg:gap-8 font-poppins font-medium text-gray-700 text-[16px] lg:text-[18px]">
             <a 
               href="#home" 
               onClick={(e) => handleNavClick(e, 'home')}
-              className="px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
+              className="px-2 lg:px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
             >
               Home
             </a>
             <a 
               href="#about" 
               onClick={(e) => handleNavClick(e, 'about')}
-              className="px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
+              className="px-2 lg:px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
             >
               About
             </a>
             <a 
               href="#skills" 
               onClick={(e) => handleNavClick(e, 'skills')}
-              className="px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
+              className="px-2 lg:px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
             >
               Skills
             </a>
             <a 
               href="#projects" 
               onClick={(e) => handleNavClick(e, 'projects')}
-              className="px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
+              className="px-2 lg:px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
             >
               Projects
             </a>
             <a 
               href="#certificate" 
               onClick={(e) => handleNavClick(e, 'certificate')}
-              className="px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
+              className="px-2 lg:px-3 py-2 hover:text-gray-600 hover:scale-110 transition-all duration-200 transform"
+            >
+              Certificate
+            </a>
+          </div>
+
+          {/* Mobile Menu Button */}
+          <button 
+            onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+            className="md:hidden flex flex-col justify-center items-center w-6 h-6 focus:outline-none"
+          >
+            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${isMobileMenuOpen ? 'rotate-45 translate-y-1.5' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-gray-700 my-1 transition-all duration-300 ${isMobileMenuOpen ? 'opacity-0' : ''}`}></span>
+            <span className={`w-6 h-0.5 bg-gray-700 transition-all duration-300 ${isMobileMenuOpen ? '-rotate-45 -translate-y-1.5' : ''}`}></span>
+          </button>
+        </div>
+
+        {/* Mobile Menu */}
+        <div className={`md:hidden transition-all duration-300 ease-in-out ${isMobileMenuOpen ? 'max-h-80 opacity-100' : 'max-h-0 opacity-0'} overflow-hidden`}>
+          <div className="pt-4 pb-2 space-y-2">
+            <a 
+              href="#home" 
+              onClick={(e) => {handleNavClick(e, 'home'); setIsMobileMenuOpen(false);}}
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors duration-200 font-poppins font-medium rounded-lg"
+            >
+              Home
+            </a>
+            <a 
+              href="#about" 
+              onClick={(e) => {handleNavClick(e, 'about'); setIsMobileMenuOpen(false);}}
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors duration-200 font-poppins font-medium rounded-lg"
+            >
+              About
+            </a>
+            <a 
+              href="#skills" 
+              onClick={(e) => {handleNavClick(e, 'skills'); setIsMobileMenuOpen(false);}}
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors duration-200 font-poppins font-medium rounded-lg"
+            >
+              Skills
+            </a>
+            <a 
+              href="#projects" 
+              onClick={(e) => {handleNavClick(e, 'projects'); setIsMobileMenuOpen(false);}}
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors duration-200 font-poppins font-medium rounded-lg"
+            >
+              Projects
+            </a>
+            <a 
+              href="#certificate" 
+              onClick={(e) => {handleNavClick(e, 'certificate'); setIsMobileMenuOpen(false);}}
+              className="block px-4 py-3 text-gray-700 hover:bg-gray-50 hover:text-gray-600 transition-colors duration-200 font-poppins font-medium rounded-lg"
             >
               Certificate
             </a>
           </div>
         </div>
       </nav>
-      
-      {/* Home Section */}
-      <section id="home" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] pt-20 transition-all duration-1000 ${visibleSections.has('home') || isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-        <div className="px-2 mx-48 h-full w-full">          
-          <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-5rem)]">
+        {/* Home Section */}
+      <section id="home" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] pt-16 sm:pt-20 transition-all duration-1000 ${visibleSections.has('home') || isPageLoaded ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+        <div className="px-4 sm:px-6 lg:px-2 lg:mx-56 h-full w-full max-w-7xl lg:max-w-none">          
+          <div className="flex flex-col lg:flex-row items-center min-h-[calc(100vh-4rem)] sm:min-h-[calc(100vh-5rem)]">
             {/* Left Content */}
-            <div className={`flex-1 lg:flex-[3] space-y-6 flex flex-col justify-center h-full pr-0 lg:pr-12 transition-all duration-1000 delay-200 ${visibleSections.has('home') || isPageLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+            <div className={`flex-1 lg:flex-[3] space-y-4 sm:space-y-6 flex flex-col justify-center h-full pr-0 lg:pr-12 text-center lg:text-left transition-all duration-1000 delay-200 ${visibleSections.has('home') || isPageLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               <div>
-                <h1 className="text-4xl lg:text-5xl font-bold text-gray-900 font-poppins mb-4">
+                <h1 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold text-gray-900 font-poppins mb-3 sm:mb-4">
                   Hi There,
                 </h1>
-                <h2 className="text-4xl lg:text-5xl font-bold text-gray-900 font-poppins mb-6">
+                <h2 className="text-3xl sm:text-4xl lg:text-4xl xl:text-5xl font-bold text-gray-900 font-poppins mb-4 sm:mb-6">
                   I'm Rayyan Zafier Leksono
                 </h2>
-                <p className="text-lg text-gray-600 font-poppins mb-2 max-w-lg">
+                <p className="text-sm sm:text-base lg:text-lg text-gray-600 font-poppins mb-2 max-w-lg mx-auto lg:mx-0">
                   Student at Bina Nusantara University majoring in Computer Science with a stream in Software Engineering
                 </p>
               </div>
               {/* Social Buttons */}
-              <div className="flex gap-4">
+              <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center lg:justify-start">
                 <a 
                   href="https://github.com/Swook1" 
                   target="_blank" 
@@ -362,10 +420,9 @@ const Portfolio = () => {
                   Linkedin
                 </a>
               </div>
-            </div>            
-            {/* Right Content - Image */}
-            <div className={`flex-1 lg:flex-[2] flex justify-center lg:justify-end h-full transition-all duration-1000 delay-400 ${visibleSections.has('home') || isPageLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
-              <div className="relative h-full w-full flex items-end justify-center">
+            </div>            {/* Right Content - Image */}
+            <div className={`flex-1 lg:flex-[2] flex justify-end h-full mt-6 lg:mt-0 transition-all duration-1000 delay-400 ${visibleSections.has('home') || isPageLoaded ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+              <div className="relative h-full w-full flex items-end justify-end">
                 <img 
                   src={person} 
                   alt="Rayyan Ganteng (1)" 
@@ -376,19 +433,18 @@ const Portfolio = () => {
           </div>
         </div>
       </section>      
-        
-      {/* About Section */}
-      <section id="about" className={`min-h-screen flex items-center justify-center bg-[#E5E7EB] transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+          {/* About Section */}
+      <section id="about" className={`min-h-screen flex items-center justify-center bg-[#E5E7EB] py-16 sm:py-20 transition-all duration-1000 ${visibleSections.has('about') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex flex-col lg:flex-row items-center gap-12">
+          <div className="flex flex-col lg:flex-row items-center gap-8 lg:gap-12">
             {/* Left Content - Text */}
-            <div className={`flex-1 lg:flex-[1] space-y-6 transition-all duration-1000 delay-200 ${visibleSections.has('about') ? 'opacity-100 -translate-x-0' : 'opacity-0 -translate-x-10'}`}>
+            <div className={`flex-1 lg:flex-[1] space-y-4 sm:space-y-6 text-center lg:text-left transition-all duration-1000 delay-200 ${visibleSections.has('about') ? 'opacity-100 -translate-x-0' : 'opacity-0 -translate-x-10'}`}>
               <div>
-                <h2 className="text-4xl lg:text-5xl font-bold font-poppins mb-8" style={{ color: '#374151' }}>
+                <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold font-poppins mb-6 sm:mb-8" style={{ color: '#374151' }}>
                   About Me
                 </h2>
-                <div className="space-y-6">
-                  <p className="text-lg font-poppins leading-relaxed" style={{ color: '#374151' }}>
+                <div className="space-y-4 sm:space-y-6">
+                  <p className="text-sm sm:text-base lg:text-lg font-poppins leading-relaxed" style={{ color: '#374151' }}>
                     I'm an Indonesian, born in Jakarta with three younger siblings. I believe that I can achieve my goal as a software engineer. I am committed to learning and accepting others' input.
                   </p>
                   <p className="text-lg font-poppins leading-relaxed" style={{ color: '#374151' }}>
@@ -397,14 +453,13 @@ const Portfolio = () => {
                 </div>
               </div>
             </div>
-            
-            {/* Right Content - Image */}
-            <div className={`flex-1 lg:flex-[1] flex justify-center lg:justify-end transition-all duration-1000 delay-400 ${visibleSections.has('about') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
+              {/* Right Content - Image */}
+            <div className={`flex-1 lg:flex-[1] flex justify-center lg:justify-end mt-6 lg:mt-0 transition-all duration-1000 delay-400 ${visibleSections.has('about') ? 'opacity-100 translate-x-0' : 'opacity-0 translate-x-10'}`}>
               <div className="relative">
                 <img 
                   src={RayyanGanteng2} 
                   alt="Rayyan Ganteng (2)" 
-                  className="w-full max-w-md h-auto object-cover rounded-lg shadow-lg"
+                  className="w-full max-w-xs sm:max-w-sm lg:max-w-md h-auto object-cover rounded-lg shadow-lg"
                 />
               </div>
             </div>
@@ -412,15 +467,14 @@ const Portfolio = () => {
         </div>
       </section>
       {/* Skills Section */}
-      <section id="skills" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] py-20 transition-all duration-1000 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      <section id="skills" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] py-16 sm:py-20 transition-all duration-1000 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className={`text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4 transition-all duration-1000 delay-200 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>Skills</h2>
-          <p className={`text-lg text-[#6B7280] font-poppins mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-400 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4 transition-all duration-1000 delay-200 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>Skills</h2>
+          <p className={`text-sm sm:text-base lg:text-lg text-[#6B7280] font-poppins mb-8 sm:mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-400 ${visibleSections.has('skills') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             Programming languages and softwares I work with
           </p>          
-          {/* Skills Grid - Centered */}
-          <div className="flex justify-center">
-            <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 xl:grid-cols-5 gap-12 lg:gap-16 xl:gap-20 max-w-7xl">
+          {/* Skills Grid - Centered */}          <div className="flex justify-center">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 lg:grid-cols-5 xl:grid-cols-6 gap-6 sm:gap-8 lg:gap-12 xl:gap-16 max-w-7xl">
               {skills.map((skill, index) => (
                 <div 
                   key={index} 
@@ -436,9 +490,9 @@ const Portfolio = () => {
                   <img 
                     src={skill.icon} 
                     alt={skill.name} 
-                    className="w-24 h-24 lg:w-28 lg:h-28 xl:w-32 xl:h-32 mb-4 group-hover:scale-110 transition-transform duration-300 object-contain" 
+                    className="w-16 h-16 sm:w-20 sm:h-20 lg:w-24 lg:h-24 xl:w-28 xl:h-28 mb-2 sm:mb-4 group-hover:scale-110 transition-transform duration-300 object-contain" 
                   />
-                  <span className="text-base lg:text-lg font-medium text-[#374151] font-poppins text-center">
+                  <span className="text-xs sm:text-sm lg:text-base font-medium text-[#374151] font-poppins text-center">
                     {skill.name}
                   </span>
                 </div>
@@ -446,29 +500,28 @@ const Portfolio = () => {
             </div>
           </div>
         </div>
-      </section>      
-        {/* Projects Section */}
-      <section id="projects" className={`min-h-screen bg-[#E5E7EB] py-20 transition-all duration-1000 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      </section>        {/* Projects Section */}
+      <section id="projects" className={`min-h-screen bg-[#E5E7EB] py-16 sm:py-20 transition-all duration-1000 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           {/* Section Header */}
-          <div className={`text-center mt-8 mb-16 transition-all duration-1000 delay-200 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
-            <h2 className="text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4">My Projects</h2>
-            <p className="text-lg text-[#6B7280] font-poppins max-w-2xl mx-auto">
+          <div className={`text-center mt-4 sm:mt-8 mb-12 sm:mb-16 transition-all duration-1000 delay-200 ${visibleSections.has('projects') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+            <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4">My Projects</h2>
+            <p className="text-sm sm:text-base lg:text-lg text-[#6B7280] font-poppins max-w-2xl mx-auto">
               Showcase of my development projects and technical achievements
             </p>
           </div>
 
           {/* Projects List */}
-          <div className="space-y-24">
+          <div className="space-y-12 sm:space-y-16 lg:space-y-24">
             {projects.map((project, index) => {
               const isEven = index % 2 === 0;
               
               return (
                 <div 
                   key={project.id} 
-                  className={`flex flex-col lg:flex-row items-center gap-12 ${isEven ? '' : 'lg:flex-row-reverse'} transition-all duration-1000 ${
+                  className={`flex flex-col lg:flex-row items-center gap-8 sm:gap-12 ${isEven ? '' : 'lg:flex-row-reverse'} transition-all duration-1000 ${
                     visibleSections.has('projects') 
-                      ? 'opacity-100 translate-y-0' 
+                      ? 'opacity-100 translate-y-0'
                       : 'opacity-0 translate-y-10'
                   }`}
                   style={{ 
@@ -583,28 +636,27 @@ const Portfolio = () => {
             })}
           </div>
         </div>
-      </section>
-        {/* Certificate Section */}
-      <section id="certificate" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] py-20 transition-all duration-1000 ${visibleSections.has('certificate') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
+      </section>        {/* Certificate Section */}
+      <section id="certificate" className={`min-h-screen flex items-center justify-center bg-[#F9FAFB] py-16 sm:py-20 transition-all duration-1000 ${visibleSections.has('certificate') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
-          <h2 className={`text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4 transition-all duration-1000 delay-200 ${visibleSections.has('certificate') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>Certificates</h2>
-          <p className={`text-lg text-[#6B7280] font-poppins mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-400 ${visibleSections.has('certificate') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
+          <h2 className={`text-3xl sm:text-4xl lg:text-5xl font-bold text-[#374151] font-poppins mb-4 transition-all duration-1000 delay-200 ${visibleSections.has('certificate') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>Certificates</h2>
+          <p className={`text-sm sm:text-base lg:text-lg text-[#6B7280] font-poppins mb-8 sm:mb-12 max-w-2xl mx-auto transition-all duration-1000 delay-400 ${visibleSections.has('certificate') ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-5'}`}>
             Achievements and certifications I have earned
           </p>
           {/* Certificate Carousel */}
-          <div className="relative flex justify-center items-center min-h-[600px] mx-auto">
+          <div className="relative flex justify-center items-center min-h-[300px] sm:min-h-[400px] lg:min-h-[600px] mx-auto">
             {/* Previous Button */}
             <button
               onClick={previousCertificate}
-              className="absolute -left-80 top-1/2 transform -translate-y-1/2 z-30 bg-white/80 hover:bg-white text-[#374151] rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+              className="absolute left-2 sm:-left-16 lg:-left-80 top-1/2 transform -translate-y-1/2 z-30 bg-white/80 hover:bg-white text-[#374151] rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
 
             {/* Certificates Display */}
-            <div className="flex items-center justify-center space-x-12 lg:space-x-16">
+            <div className="flex items-center justify-center space-x-4 sm:space-x-8 lg:space-x-16">
               {getVisibleCertificates().map((cert, index) => {
                 const isCenter = cert.position === 0;
                 const isLeft = cert.position === -1;
@@ -659,13 +711,12 @@ const Portfolio = () => {
                   </div>
                 );
               })}
-            </div>            
-            {/* Next Button */}
+            </div>              {/* Next Button */}
             <button
               onClick={nextCertificate}
-              className="absolute -right-80 top-1/2 transform -translate-y-1/2 z-30 bg-white/80 hover:bg-white text-[#374151] rounded-full p-3 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+              className="absolute right-2 sm:-right-16 lg:-right-80 top-1/2 transform -translate-y-1/2 z-30 bg-white/80 hover:bg-white text-[#374151] rounded-full p-2 sm:p-3 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
             >
-              <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-6 sm:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
