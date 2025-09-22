@@ -31,7 +31,8 @@ import BNCC from '../assets/certificate/BNCC_Activist.jpg';
 import TPM1 from '../assets/certificate/Certificate of Completion Rayyan Zafier Leksono.jpg';
 import TPM2 from '../assets/certificate/Certificate of Participation Rayyan Zafier Leksono.jpg';
 import BNMC from '../assets/certificate/PRE STARTER 学生.png';
-
+import BTT from '../assets/certificate/Certificate-3.png';
+import LNT from '../assets/certificate/BNCC_LnT_Java Programming.png';
 
 // Project Videos
 import AsphatVideo from '../assets/projects/Asphatl.mp4';
@@ -66,26 +67,39 @@ const Portfolio = () => {
       id: 1, 
       title: 'BNCC Activist Certificate', 
       image: BNCC,
-      description: 'Certificate of Achievement for becoming as Bina Nusantara Computer Club (BNCC) Activist'
+      description: 'Certificate of Achievement for becoming a Bina Nusantara Computer Club (BNCC) Activist'
     },
     { 
       id: 2, 
       title: 'TPM Completion Certificate', 
       image: TPM1,
-      description: 'Certificate of Completion for Training Program Management at Bina Nusantara Coomputer Club (BNCC)'
+      description: 'Certificate of Completion for Training Program Management at Bina Nusantara Computer Club (BNCC)'
     },
     { 
       id: 3, 
       title: 'TPM Participation Certificate', 
       image: TPM2,
       description: 'Certificate of Participation for Training Program Management at Bina Nusantara Computer Club (BNCC)'
-    },    { 
+    },    
+    { 
       id: 4, 
       title: 'BNMC Pre Starter Certificate', 
       image: BNMC,
       description: 'Certificate for completing Pre Starter Level Achievement of Mandarin Class'
+    },
+    {
+      id: 5, 
+      title: 'BNCC Techno Talk Certificate', 
+      image: BTT,
+      description: 'Certificate for participating in the BNCC Techno Talk Fintech Revolution: Shaping the Future of Finance event as a Media Partner Staff'
+    },
+    {
+      id: 6, 
+      title: 'LnT Java Programming Certificate', 
+      image: LNT,
+      description: 'Certificate for completing the class in the Learning and Training (LnT) BNCC of Java Programming course'
     }
-  ];  
+  ];
   
   // Projects data array
   const projects = [
