@@ -34,12 +34,6 @@ import BNMC from '../assets/certificate/PRE STARTER 学生.png';
 import BTT from '../assets/certificate/Certificate-3.png';
 import LNT from '../assets/certificate/BNCC_LnT_Java Programming.png';
 
-// Project Videos
-import AsphatVideo from '../assets/projects/Asphatl.mp4';
-import BConnectVideo from '../assets/projects/B-Connect Trailer.mp4';
-import LibraryVideo from '../assets/projects/Library Management.mp4';
-import MenuVideo from '../assets/projects/Menu Management.mp4';
-
 const Portfolio = () => {
   // Animation states
   const [isPageLoaded, setIsPageLoaded] = React.useState(false);
@@ -107,7 +101,7 @@ const Portfolio = () => {
       id: 1,
       title: 'B-Connect Platform',      
       description: 'B-Connect is a group project consisting of four people for the final project of the Software Engineering course. B-Connect is a freelancer platform designed specifically for Binus University students.',
-      video: BConnectVideo,
+      youtubeEmbedUrl: 'https://www.youtube.com/embed/S6u8BeAwEKc?si=H8daetlO0DANkF9Q&autoplay=1&mute=1&loop=1&playlist=S6u8BeAwEKc',
       technologies: [ReactLogo, TailwindLogo, JavaScript, MongoDB],
       githubUrl: 'https://github.com/Swook1/b-connect',
       websiteUrl: 'https://b-connect-nu.vercel.app/'
@@ -116,7 +110,7 @@ const Portfolio = () => {
       id: 2,
       title: 'Asphatl 9: Rejends',      
       description: 'As an individual final project for the Human Centered Design (HCI) course, Apshatl 9: Rejends was created as a remake of the Asphalt 9: Legends game website.',
-      video: AsphatVideo,
+      youtubeEmbedUrl: 'https://www.youtube.com/embed/MNy0GTpzTWc?si=xw45P-O0FRAbYJEY&autoplay=1&mute=1&loop=1&playlist=MNy0GTpzTWc',
       technologies: [HTML, CSS, JavaScript],
       githubUrl: 'https://github.com/Swook1/Asphatl-9-Rejends',
       websiteUrl: 'https://swook1.github.io/Asphatl-9-Rejends/'
@@ -125,7 +119,7 @@ const Portfolio = () => {
       id: 3,
       title: 'Library Management System',      
       description: 'Library Management System is a simple system for adding, displaying lists, searching, and deleting books. This Library Management System was created as one of the basic menu project exercises in Java.',
-      video: LibraryVideo,
+      youtubeEmbedUrl: 'https://www.youtube.com/embed/nJ1ZtCg5Kic?si=o_CH0KuTniDI2gE-&autoplay=1&mute=1&loop=1&playlist=nJ1ZtCg5Kic',
       technologies: [Java],
       githubUrl: 'https://github.com/Swook1/Simple_Library-Management',
     },
@@ -133,7 +127,7 @@ const Portfolio = () => {
       id: 4,
       title: 'Menu Management System',      
       description: 'The Menu Management System was created as the final project of BNCC Learning and Training. This system functions as a customization menu and inventory management with a user interface (UI) and database operations.',
-      video: MenuVideo,
+      youtubeEmbedUrl: 'https://www.youtube.com/embed/-FAF1OfVFQc?si=tKU1Kmy2JM7ELz_L&autoplay=1&mute=1&loop=1&playlist=-FAF1OfVFQc',
       technologies: [Java, MySQL],
       githubUrl: 'https://github.com/Swook1/Menu-Management_JavaFX',
     }  ];
@@ -158,7 +152,6 @@ const Portfolio = () => {
   const [currentCertIndex, setCurrentCertIndex] = React.useState(0);
   const [selectedCertificate, setSelectedCertificate] = React.useState(null);
   const [imageOrientations, setImageOrientations] = React.useState({});
-  const [videoStates, setVideoStates] = React.useState({});
 
   // Function to detect image orientation
   const detectImageOrientation = (imageSrc, certId) => {
@@ -220,30 +213,6 @@ const Portfolio = () => {
     setSelectedCertificate(null);
   };
 
-  // Video control functions
-  const toggleMute = (videoId) => {
-    const video = document.getElementById(`video-${videoId}`);
-    if (video) {
-      video.muted = !video.muted;
-      setVideoStates(prev => ({
-        ...prev,
-        [videoId]: { ...prev[videoId], muted: video.muted }
-      }));
-    }
-  };
-
-  const toggleFullscreen = (videoId) => {
-    const video = document.getElementById(`video-${videoId}`);
-    if (video) {
-      if (document.fullscreenElement) {
-        document.exitFullscreen();
-      } else {
-        video.requestFullscreen().catch(err => {
-          console.log('Error attempting to enable fullscreen:', err);
-        });
-      }    }
-  };
-
   // Page load animation effect
   React.useEffect(() => {
     const timer = setTimeout(() => {
@@ -287,13 +256,7 @@ const Portfolio = () => {
     }
   };
 
-  React.useEffect(() => {
-    const initialStates = {};
-    projects.forEach(project => {
-      initialStates[project.id] = { muted: true };
-    });
-    setVideoStates(initialStates);
-  }, []);  return (
+  return (
     <div className={`transition-opacity duration-1000 ${isPageLoaded ? 'opacity-100' : 'opacity-0'}`}>        
       {/* Navbar */}
       <nav className="w-full bg-white px-4 sm:px-6 py-4 shadow-sm fixed top-0 left-0 right-0 z-50">
@@ -544,53 +507,17 @@ const Portfolio = () => {
                 >
                 {/* Video Container */}
                   <div className="flex-1 lg:flex-[1]">                    
-                    <div className="relative bg-[#D1D5DB] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300 group">
+                    <div className="relative bg-[#D1D5DB] rounded-lg overflow-hidden shadow-lg hover:shadow-xl transition-shadow duration-300">
                       <div className="aspect-video">
-                        <video 
-                          id={`video-${project.id}`}
-                          className="w-full h-full object-cover"
-                          autoPlay
-                          loop
-                          muted
-                          playsInline
-                          preload="metadata"
-                        >
-                          <source src={project.video} type="video/mp4" />
-                          Your browser does not support the video tag.
-                        </video>
-                      </div>
-                      
-                      {/* Video Controls Overlay */}
-                      <div className="absolute inset-0 bg-black bg-opacity-0 group-hover:bg-opacity-20 transition-all duration-300">
-                        <div className="absolute bottom-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity duration-300">
-                          {/* Mute/Unmute Button */}
-                          <button
-                            onClick={() => toggleMute(project.id)}
-                            className="bg-black bg-opacity-70 hover:bg-opacity-90 text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
-                            title={videoStates[project.id]?.muted ? "Unmute" : "Mute"}
-                          >
-                            {videoStates[project.id]?.muted ? (
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.776L4.216 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.216l4.167-3.776zm2.91 3.138a1 1 0 011.414 0L15 7.586l1.293-1.293a1 1 0 111.414 1.414L16.414 9l1.293 1.293a1 1 0 01-1.414 1.414L15 10.414l-1.293 1.293a1 1 0 01-1.414-1.414L13.586 9l-1.293-1.293a1 1 0 010-1.414z" clipRule="evenodd" />
-                              </svg>
-                            ) : (
-                              <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                                <path fillRule="evenodd" d="M9.383 3.076A1 1 0 0110 4v12a1 1 0 01-1.617.776L4.216 13H2a1 1 0 01-1-1V8a1 1 0 011-1h2.216l4.167-3.776zm7.824 5.216a1 1 0 01.093 1.32c-.155.251-.373.48-.65.661a1 1 0 11-1.114-1.662c.058-.04.11-.083.157-.13a1 1 0 011.514.81zm-2.176-2.176a1 1 0 01.093 1.32c-.802 1.048-1.895 1.684-3.132 1.684a1 1 0 110-2c.64 0 1.194-.404 1.414-.973a1 1 0 011.625-.031z" clipRule="evenodd" />
-                              </svg>
-                            )}
-                          </button>
-                          
-                          {/* Fullscreen Button */}
-                          <button
-                            onClick={() => toggleFullscreen(project.id)}
-                            className="bg-black bg-opacity-70 hover:bg-opacity-90 text-white p-2 rounded-full transition-all duration-200 hover:scale-110"
-                            title="Fullscreen"
-                          >
-                            <svg className="w-5 h-5" fill="currentColor" viewBox="0 0 20 20">
-                              <path fillRule="evenodd" d="M3 4a1 1 0 011-1h4a1 1 0 010 2H6.414l2.293 2.293a1 1 0 11-1.414 1.414L5 6.414V8a1 1 0 01-2 0V4zm9 1a1 1 0 010-2h4a1 1 0 011 1v4a1 1 0 01-2 0V6.414l-2.293 2.293a1 1 0 11-1.414-1.414L13.586 5H12zm-9 7a1 1 0 012 0v1.586l2.293-2.293a1 1 0 111.414 1.414L6.414 15H8a1 1 0 010 2H4a1 1 0 01-1-1v-4zm13-1a1 1 0 011 1v4a1 1 0 01-1 1h-4a1 1 0 010-2h1.586l-2.293-2.293a1 1 0 111.414-1.414L15 13.586V12a1 1 0 011-1z" clipRule="evenodd" />
-                            </svg>
-                          </button>
-                        </div>
+                        <iframe 
+                          className="w-full h-full"
+                          src={project.youtubeEmbedUrl}
+                          title="YouTube video player" 
+                          frameBorder="0" 
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" 
+                          referrerPolicy="strict-origin-when-cross-origin" 
+                          allowFullScreen
+                        ></iframe>
                       </div>
                     </div>
                   </div>

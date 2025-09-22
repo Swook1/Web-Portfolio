@@ -1,3 +1,0 @@
-Asphatl.mp4 filter=lfs diff=lfs merge=lfs -text
-B-Connect[[:space:]]Trailer.mp4 filter=lfs diff=lfs merge=lfs -text
-*.mp4 filter=lfs diff=lfs merge=lfs -text
