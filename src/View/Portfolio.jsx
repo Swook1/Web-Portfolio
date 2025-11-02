@@ -33,6 +33,7 @@ import TPM2 from '../assets/certificate/Certificate of Participation Rayyan Zafi
 import BNMC from '../assets/certificate/PRE STARTER 学生.png';
 import BTT from '../assets/certificate/Certificate-3.png';
 import LNT from '../assets/certificate/BNCC_LnT_Java Programming.png';
+import BNCC_Complete from '../assets/certificate/Activist_Completion.png';
 
 const Portfolio = () => {
   // Animation states
@@ -96,6 +97,12 @@ const Portfolio = () => {
       title: 'LnT Java Programming Certificate', 
       image: LNT,
       description: 'Certificate for completing the class in the Learning and Training (LnT) BNCC of Java Programming course'
+    },
+    {
+      id: 7, 
+      title: 'BNCC Activist Completion Certificate', 
+      image: BNCC_Complete,
+      description: 'Certificate of Completion for successfully completing the BNCC Activist program at Bina Nusantara Computer Club (BNCC)'
     }
   ];
   
@@ -452,10 +459,13 @@ const Portfolio = () => {
                 </h2>
                 <div className="space-y-6">
                   <p className="text-base lg:text-lg font-poppins leading-relaxed" style={{ color: '#374151' }}>
-                    I'm an Indonesian, born in Jakarta with three younger siblings. I believe that I can achieve my goal as a software engineer. I am committed to learning and accepting others' input.
+                    I'm an Indonesian, born in Jakarta with three younger siblings. I believe that I can achieve my goal as a developer. I am committed to learning and accepting others' input.
                   </p>
                   <p className="text-base lg:text-lg font-poppins leading-relaxed" style={{ color: '#374151' }}>
-                    My interests so far are related to Computer, Sports, Gym, Movie, and Comics.
+                    I have a strong passion for continuously learning and exploring new technologies. As a Computer Science student at Bina Nusantara University, I'm always eager to expand my knowledge in software or website development and stay updated with the latest industry trends.
+                  </p>
+                  <p className="text-base lg:text-lg font-poppins leading-relaxed" style={{ color: '#374151' }}>
+                    Beyond coding, my interests include Sports, Gym, Movies, and Comics, which help me maintain a balanced lifestyle and inspire creativity in my work.
                   </p>
                 </div>
               </div>
@@ -615,26 +625,15 @@ const Portfolio = () => {
             Achievements and certifications I have earned
           </p>
           
-          {/* Mobile Swipe Instruction */}
-          <div className="md:hidden mb-4">
-            <p className="text-xs text-[#9CA3AF] font-poppins flex items-center justify-center gap-2">
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M7 16l-4-4m0 0l4-4m-4 4h18" />
-              </svg>
-              Swipe left or right to navigate
-              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17 8l4 4m0 0l-4 4m4-4H3" />
-              </svg>
-            </p>
-          </div>
           {/* Certificate Carousel */}
-          <div className="relative flex justify-center items-center min-h-[250px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[600px] mx-auto">
-            {/* Previous Button - Desktop Only */}
+          <div className="relative flex justify-center items-center min-h-[250px] sm:min-h-[350px] md:min-h-[400px] lg:min-h-[600px] mx-auto max-w-7xl">
+            {/* Previous Button - Responsive */}
             <button
               onClick={previousCertificate}
-              className="hidden md:block absolute left-1 sm:left-2 md:-left-16 lg:-left-80 top-1/2 transform -translate-y-1/2 z-30 bg-white/80 hover:bg-white text-[#374151] rounded-full p-1.5 sm:p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+              className="absolute left-2 sm:left-4 md:left-8 lg:left-12 xl:left-16 top-1/2 transform -translate-y-1/2 z-30 bg-white/90 hover:bg-white text-[#374151] rounded-full p-2 sm:p-2.5 md:p-3 lg:p-3.5 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm hover:scale-110"
+              aria-label="Previous certificate"
             >
-              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 19l-7-7 7-7" />
               </svg>
             </button>
@@ -701,15 +700,32 @@ const Portfolio = () => {
                 );
               })}
             </div>              
-            {/* Next Button - Desktop Only */}
+            {/* Next Button - Responsive */}
             <button
               onClick={nextCertificate}
-              className="hidden md:block absolute right-1 sm:right-2 md:-right-16 lg:-right-80 top-1/2 transform -translate-y-1/2 z-30 bg-white/80 hover:bg-white text-[#374151] rounded-full p-1.5 sm:p-2 md:p-3 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm"
+              className="absolute right-2 sm:right-4 md:right-8 lg:right-12 xl:right-16 top-1/2 transform -translate-y-1/2 z-30 bg-white/90 hover:bg-white text-[#374151] rounded-full p-2 sm:p-2.5 md:p-3 lg:p-3.5 shadow-lg hover:shadow-xl transition-all duration-300 backdrop-blur-sm hover:scale-110"
+              aria-label="Next certificate"
             >
-              <svg className="w-3 h-3 sm:w-4 sm:h-4 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <svg className="w-4 h-4 sm:w-5 sm:h-5 md:w-6 md:h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                 <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
               </svg>
             </button>
+          </div>
+          
+          {/* Navigation Dots Indicator */}
+          <div className="flex justify-center gap-2 mt-6 sm:mt-8">
+            {certificates.map((cert, index) => (
+              <button
+                key={cert.id}
+                onClick={() => setCurrentCertIndex(index)}
+                className={`transition-all duration-300 rounded-full ${
+                  index === currentCertIndex 
+                    ? 'w-8 h-2 bg-[#374151]' 
+                    : 'w-2 h-2 bg-[#D1D5DB] hover:bg-[#9CA3AF]'
+                }`}
+                aria-label={`Go to certificate ${index + 1}`}
+              />
+            ))}
           </div>
         </div>        
 
@@ -762,7 +778,7 @@ const Portfolio = () => {
             <div className="flex-1 lg:flex-[1] text-center lg:text-left">
               <h3 className="text-base sm:text-lg font-bold text-[#374151] font-poppins mb-3 sm:mb-4">Site Credits</h3>
               <div className="space-y-2 text-[#6B7280] font-poppins">
-                <p className="text-sm sm:text-base md:text-lg">Built with 🔥 using modern web technologies</p>
+                <p className="text-sm sm:text-base md:text-lg">Built using modern web technologies 🔥</p>
                 <div className="flex flex-wrap justify-center lg:justify-start gap-2 sm:gap-4 text-sm sm:text-base md:text-lg">
                   <span className="flex items-center gap-1">
                     <img src={ReactLogo} alt="React" className="w-3 h-3 sm:w-4 sm:h-4" />
